@@ -175,7 +175,46 @@ void initMatrix(char** matrix){
 
 //Mover negras
 void moverNegras(char** matrix, int inicioX, int inicioY, int finalX, int finalY){
-    
+    for(int i = 0; i < 12; i++){
+        for(int j = 0; j< 12; j++){
+            if(matrix[inicioY][inicioX] == matrix[finalY][finalY]){
+                cout << "Está moviendo en la misma posición\n";
+            }
+            if(matrix[finalY][finalX] == 'm' || matrix[finalY][finalX] == 's'){
+                cout << "La casilla está ocupada\n";
+            }
+            if(matrix[finalY][finalX] == 'X'){
+                cout << "No puede acceder a las esquinas\n";
+            }else{
+                matrix[inicioY][inicioX] = ' ';
+                matrix[finalY][finalX] = 'm';
+            }
+        }
+    }
+}
+
+//Mover blancas
+void moverBlancas(char** matrix, int inicioX, int inicioY, int finalX, int finalY){
+    for(int i = 0; i < 12; i++){
+        for(int j = 0; j< 12; j++){
+            if(matrix[inicioY][inicioX] == matrix[finalY][finalY]){
+                cout << "Está moviendo en la misma posición\n";
+            }
+            if(matrix[finalY][finalX] == 'm' || matrix[finalY][finalX] == 's'){
+                cout << "La casilla está ocupada\n";
+            }
+            if(matrix[finalY][finalX] == 'X'){
+                cout << "No puede acceder a las esquinas\n";
+            }
+            if(matrix[inicioY][inicioX] == 'W' && matrix[finalY][finalX] == 'X'){
+                cout << "Los suecos ganaron la partida";
+            }
+            else{
+                matrix[inicioY][inicioX] = ' ';
+                matrix[finalY][finalX] = 's';
+            }
+        }
+    }
 }
 
 //Imprimir matriz
