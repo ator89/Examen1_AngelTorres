@@ -11,6 +11,8 @@ void initMatrix(char**);//Inicializar
 void printMatrix(char**);//Imprimir
 void freeMatrix(char**&);//Liberar espacio reservado
 
+void jugar();
+
 int main(){
 
     bool menuActivo = true;
@@ -22,6 +24,7 @@ int main(){
             cin >> menuOpcion;
             switch(menuOpcion){
                 case 1://Jugar
+                    jugar();
                     break;
                 case 0://Salir
                     break;
@@ -34,6 +37,15 @@ int main(){
     }
 
     return 0;
+}
+
+void jugar(){
+    char** matrix = NULL;
+
+    matrix = createMatrix();
+    initMatrix(matrix);
+    printMatrix(matrix);
+    freeMatrix(matrix);
 }
 
 //Crear matriz
@@ -51,12 +63,14 @@ void initMatrix(char** matrix){
         for(int j = 0; j < 11; j++){
             if(i == 6 && j == 6){
                 matrix[i][j] = 'R';
+            }else{
+                matrix[i][j] = ' ';
             }
-            matrix[i][j] = ' ';
         }
     }
 }
 
+//Imprimir matriz
 void printMatrix(char** matrix){
     for(int i = 0; i < 11; i++){
         for(int j = 0; j < 11; j++){
@@ -66,6 +80,7 @@ void printMatrix(char** matrix){
     }
 }
 
+//Liberar espacio reservado para la matriz
 void freeMatrix(char**& matrix){
     for(int i = 0; i < 11; i++){
         delete[] matrix[i];
