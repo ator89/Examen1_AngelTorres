@@ -40,12 +40,31 @@ int main(){
 }
 
 void jugar(){
+    
+    bool captura = true;
+    int turno = 0;
     char** matrix = NULL;
 
     matrix = createMatrix();
     initMatrix(matrix);
     printMatrix(matrix);
     freeMatrix(matrix);
+    cout << "Comienza el juego\n";
+
+    while(captura){
+        
+        if(turno%2 == 0){
+            cout << "Jugador 1\n";
+        }else{
+            cout << "Jugador 2\n";
+            //captura = false;
+        }
+        if(turno == 10){
+            captura = false;
+        }
+        turno++;
+    }
+    
 }
 
 //Crear matriz
@@ -61,10 +80,14 @@ char** createMatrix(){
 void initMatrix(char** matrix){
     for(int i = 0; i< 11; i++){
         for(int j = 0; j < 11; j++){
-            if(i == 6 && j == 6){
-                matrix[i][j] = 'R';
+            //casilla inicial del rey
+            if((i == 0 && j == 0) || (i == 0 && j == 10) || (i == 10 && j ==0) || (i == 10 && j == 10)){
+                matrix[i][j] = 'X';
+            }
+            else if(i == 5 && j == 5){
+                matrix[i][j] = 'W';
             }else{
-                matrix[i][j] = ' ';
+                matrix[i][j] = '.';
             }
         }
     }
@@ -74,7 +97,7 @@ void initMatrix(char** matrix){
 void printMatrix(char** matrix){
     for(int i = 0; i < 11; i++){
         for(int j = 0; j < 11; j++){
-            cout << ' ' << matrix[i][j];
+            cout << '[' << matrix[i][j] << ']';
         }
         cout << endl;
     }
