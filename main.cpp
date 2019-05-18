@@ -50,26 +50,26 @@ int main(){
 
 void jugar(){
     
-    bool captura = true;
+    bool captura = true, mover = false;
     int turno = 0;
     char** matrix = NULL;
 
     matrix = createMatrix();
     initMatrix(matrix);
     printMatrix(matrix);
-    freeMatrix(matrix);
+
     cout << "Comienza el juego\n";
 
     int inicioX, inicioY, finalX, finalY;
+    char fila, columna;
     string posicionInicial;
     string posicionFinal;
-    
-    vector<char> vector;
-    
 
-
+    
+    vector<char> vectorInicio, vectorFinal;
+    
+    //Turnos de usuarios
     while(captura){
-        
         if(turno%2 == 0){
             cin.clear();
             cout << "Moscovitas\n";
@@ -81,6 +81,203 @@ void jugar(){
             stringstream cadenaPos1(posicionInicial);
             stringstream cadenaPos2(posicionFinal);
 
+            //Parseo posición inicial para filas
+            while(cadenaPos1 >> fila){
+                vectorInicio.push_back(fila);
+                if(cadenaPos1.peek() == '-'){
+                    cadenaPos1.ignore();
+                }
+            }
+
+            //Parseo posición final para filas
+            while(cadenaPos2 >> columna){
+                vectorFinal.push_back(columna);
+                if(cadenaPos2.peek() == '-'){
+                    cadenaPos2.ignore();
+                }
+            }
+
+            //Token primera coordenada inicial
+            switch(vectorInicio.at(0)){
+                    case 'A':
+                    case 'a':
+                        inicioY = 1;
+                        break;
+                    case 'B':
+                    case 'b':
+                        inicioY = 2;
+                        break;
+                    case 'C':
+                    case 'c':
+                        inicioY = 3;
+                        break;
+                    case 'D':
+                    case 'd':
+                        inicioY = 4;
+                        break;
+                    case 'E':
+                    case 'e':
+                        inicioY = 5;
+                        break;
+                    case 'F':
+                    case 'f':
+                        inicioY = 6;
+                        break;
+                    case 'G':
+                    case 'g':
+                        inicioY = 7;
+                        break;
+                    case 'H':
+                    case 'h':
+                        inicioY = 8;
+                        break;
+                    case 'I':
+                    case 'i':
+                        inicioY = 9;
+                        break;
+                    case 'J':
+                    case 'j':
+                        inicioY = 10;
+                        break;
+                    case 'K':
+                    case 'k':
+                        inicioY = 11;
+                        break;
+                }
+
+                //Token segunda coordenada inicial
+                switch(vectorInicio.at(1)){
+                    case 0:
+                        inicioX = 1;
+                        break;
+                    case 1:
+                        inicioX = 1;
+                        break;
+                    case 2:
+                        inicioX = 1;
+                        break;
+                    case 3:
+                        inicioX = 1;
+                        break;
+                    case 4:
+                        inicioX = 1;
+                        break;
+                    case 5:
+                        inicioX = 1;
+                        break;
+                    case 6:
+                        inicioX = 1;
+                        break;
+                    case 7:
+                        inicioX = 1;
+                        break;
+                    case 8:
+                        inicioX = 1;
+                        break;
+                    case 9:
+                        inicioX = 1;
+                        break;
+                    case 'T':
+                    case 't':
+                        inicioX = 1;
+                        break;
+                }
+
+                //Token primera coordenada final
+            switch(vectorFinal.at(0)){
+                    case 'A':
+                    case 'a':
+                        inicioY = 1;
+                        break;
+                    case 'B':
+                    case 'b':
+                        inicioY = 2;
+                        break;
+                    case 'C':
+                    case 'c':
+                        inicioY = 3;
+                        break;
+                    case 'D':
+                    case 'd':
+                        finalY = 4;
+                        break;
+                    case 'E':
+                    case 'e':
+                        finalY = 5;
+                        break;
+                    case 'F':
+                    case 'f':
+                        finalY = 6;
+                        break;
+                    case 'G':
+                    case 'g':
+                        finalY = 7;
+                        break;
+                    case 'H':
+                    case 'h':
+                        finalY = 8;
+                        break;
+                    case 'I':
+                    case 'i':
+                        finalY = 9;
+                        break;
+                    case 'J':
+                    case 'j':
+                        finalY = 10;
+                        break;
+                    case 'K':
+                    case 'k':
+                        finalY = 11;
+                        break;
+                }
+
+                //Token segunda coordenada final
+                switch(vectorFinal.at(1)){
+                    case 0:
+                        finalX = 1;
+                        break;
+                    case 1:
+                        finalX = 1;
+                        break;
+                    case 2:
+                        finalX = 1;
+                        break;
+                    case 3:
+                        finalX = 1;
+                        break;
+                    case 4:
+                        finalX = 1;
+                        break;
+                    case 5:
+                        finalX = 1;
+                        break;
+                    case 6:
+                        finalX = 1;
+                        break;
+                    case 7:
+                        finalX = 1;
+                        break;
+                    case 8:
+                        finalX = 1;
+                        break;
+                    case 9:
+                        finalX = 1;
+                        break;
+                    case 'T':
+                    case 't':
+                        finalX = 1;
+                        break;
+                }
+
+                cout << "posición inicial X: " << inicioX;
+                cout << "posición inicial Y: " << inicioY;
+                cout << "posición final X: " << finalX;
+                cout << "posición final Y: " << finalY;
+                //mover = moverNegras(matrix, inicioX, inicioY, finalX, finalY);
+                //if(mover == false){
+                 //   printMatrix(matrix);
+                //}
+
         }else{
             cin.clear();
             cout << "Suecos\n";
@@ -91,7 +288,7 @@ void jugar(){
         }
         turno++;
     }
-    
+        freeMatrix(matrix);
 }
 
 //Crear matriz
@@ -148,7 +345,7 @@ void initMatrix(char** matrix){
     matrix[0][8] = '7';
     matrix[0][9] = '8';
     matrix[0][10] = '9';
-    matrix[0][11] = 'd';
+    matrix[0][11] = 'T';
 
     //Negras superior
     matrix[1][5] = 'm';
